@@ -73,12 +73,14 @@ As adoption grows, the protocol also generates positive network effects: a large
 
 #### 📍 Phase 1: Technical Rigor & Security (Q3 2026)
 **Objective:** Optimize smart contract efficiency and ensure bulletproof network security. 
+
 **Key Deliverables:** * Conduct comprehensive vulnerability and penetration testing on the Solidity code. 
  Refine gas-optimization strategies to maintain a strictly predictable footprint within LACNet's per-block gas limits. 
+ 
 **Success Metric:** Zero critical vulnerabilities identified; average transaction gas cost reduced by 15%.
   
-####📍 Phase 2: Local Market Validation (Q4 2026) 
-**Objective:** Validate the economic incentive model in a controlled, real-world environment. 
+#### 📍 Phase 2: Local Market Validation (Q4 2026) 
+**Objective:** Validate the economic incentive model in a controlled, real-world environment. }
 **Key Deliverables:**
   * Launch a localized pilot program in a selected district of Lima, Peru. 
   * Establish strategic on-the-ground partnerships with local municipal recycling centers.
