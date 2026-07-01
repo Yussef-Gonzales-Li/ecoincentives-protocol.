@@ -10,7 +10,9 @@ EcoIncentives Protocol addresses Peru's structural recycling market failure thro
 
 ### 2. Alignment with Hackathon Objectives 
 **Hackathon Mandate Context:** The protocol is strategically engineered to directly advance the hackathon's core directive—"Innovando por un Futuro Sostenible"—by leveraging decentralized architecture to foster regional environmental sustainability and public-goods provisioning
+
 **Objective 1 - Market Friction Elimination:** To establish an incentive-compatible economic mechanism that minimizes transaction costs and resolves bidirectional information asymmetry through a decentralized, immutable ledger
+
 **Objective 2 - Open-Source Public-Goods Scalability:** To deliver a non-rival and non-excludable codebase that can be seamlessly forked and adapted by external regional municipalities at a near-zero marginal cost structure (MC → 0), thereby maximizing regional positive externalities
 ### 3. Project Name 
 The project is formally designated **EcoIncentives Protocol**. The name was selected to explicitly communicate the core mechanism-design logic of the solution: the direct, on-chain linkage between a pro-environmental action ("Eco") and a verifiable economic reward ("Incentives"). As a corporate Web3 identity, EcoIncentives Protocol signals to municipalities, investors, and hackathon evaluators that the project is not merely a recycling awareness campaign, but an incentive-compatible economic mechanism implemented as immutable software, consistent with best practices in applied mechanism design and decentralized public-goods provisioning.
@@ -52,8 +54,11 @@ The technology stack was selected to minimize both fixed development costs and l
 **Note on nomenclature:** In September 2025, LACNet and the LACChain networks it orchestrates were unified under a new joint brand, LNet (IDB Lab & LACNet, 2025). This report retains the name "LACNet" and "LACNet Pro-Testnet" throughout, in line with the hackathon's technical brief and the network's product naming at the infrastructure level.
 
 ### 7. Project Links 
+
 **Pitch Deck Link:** [Insert Presentation URL Here] 
+
 **GitHub Repository Link:** [Insert Public Repository URL Here] 
+
 **Video Demo Link (2–5 minutes):** [Insert Video URL Here] 
 
 ### 8. Justification of Impact and Scalability 
