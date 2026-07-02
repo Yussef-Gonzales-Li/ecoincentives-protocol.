@@ -57,7 +57,7 @@ The technology stack was selected to minimize both fixed development costs and l
 
 **Pitch Deck Link:** [Insert Presentation URL Here] 
 
-**GitHub Repository Link:** [Insert Public Repository URL Here] 
+**GitHub Repository Link:** [https://github.com/Yussef-Gonzales-Li/ecoincentives-protocol.] 
 
 **Video Demo Link (2–5 minutes):** [Insert Video URL Here] 
 
