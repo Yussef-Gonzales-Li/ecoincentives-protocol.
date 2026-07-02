@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoIncentives Protocol - Frontend Simulator</title>
+    <!-- Tailwind CSS para diseño de alta gama -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos limpios -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos personalizados para simular una aplicación móvil premium */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+        }
+        .phone-container {
+            max-width: 412px;
+            height: 844px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        /* Ocultar barra de scroll interna */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 text-slate-100">
+
+    <div class="mb-6 text-center">
+        <h1 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
+            EcoIncentives Protocol
+        </h1>
+        <p class="text-xs text-slate-400 mt-1">Simulador Oficial de Frontend & Smart Contract (LNet / LACNet)</p>
+        <span class="inline-block mt-2 px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-950/50 rounded-full border border-emerald-500/20">
+            <i class="fa-solid fa-code-compare mr-1"></i> Estado Sincronizado en Memoria
+        </span>
+    </div>
+
+    <!-- MOCKUP DEL TELÉFONO MÓVIL -->
+    <div class="phone-container relative w-full rounded-[40px] border-8 border-slate-800 bg-slate-950 flex flex-col overflow-hidden">
+        
+        <!-- BARRA DE ESTADO DEL CELULAR (STATUS BAR) -->
+        <div class="w-full px-6 pt-3 pb-2 flex justify-between items-center text-xs text-slate-400 font-medium z-10 bg-slate-950">
+            <span>19:30</span>
+            <div class="w-20 h-4 bg-black rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"></div> <!-- Notch -->
+            <div class="flex items-center space-x-1.5">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-three-quarters"></i>
+            </div>
+        </div>
+
+        <!-- PANTALLAS INTERACTIVAS -->
+        <div class="flex-1 flex flex-col overflow-y-auto no-scrollbar relative p-5">
+
+            <!-- ================= PANTALLA 1: CONECTAR METAMASK ================= -->
+            <div id="screen-login" class="flex-1 flex flex-col justify-between py-8">
+                <div class="text-center mt-12">
+                    <div class="inline-flex p-5 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-3xl border border-emerald-500/20 shadow-lg shadow-emerald-500/5 mb-6">
+                        <svg class="w-16 h-16 text-emerald-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m0 0a2 2 0 100 4h5a2 2 0 002-2V5m-5 1.5L21.2 8"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold tracking-tight">EcoIncentives</h2>
+                    <p class="text-slate-400 text-sm mt-2 max-w-xs mx-auto">
+                        Decentralized Circular Economy Incentive Mechanism Built on LNet Blockchain.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <button onclick="connectWallet()" class="w-full py-4 px-6 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-bold rounded-2xl shadow-lg transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask Logo" class="w-6 h-6">
+                        <span>Connect MetaMask Wallet</span>
+                    </button>
+                    <p class="text-[10px] text-center text-slate-500 leading-relaxed max-w-xs mx-auto">
+                        By connecting your digital wallet, you verify cryptographic identity on LNet. Standard gas compensation models will apply automatically.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ================= PANTALLA 2: DASHBOARD CIUDADANO ================= -->
+            <div id="screen-dashboard" class="hidden flex-1 flex flex-col space-y-5">
+                
+                <!-- HEADER DASHBOARD -->
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-slate-950 font-bold">
+                            U
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-1">
+                                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span>
+                                <span class="text-xs text-emerald-400 font-semibold uppercase">Connected</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400 font-mono" id="wallet-address">0x71C...3a90</p>
+                        </div>
+                    </div>
+                    <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 text-slate-400 rounded-lg text-[10px] font-mono">
+                        LNet Node
+                    </span>
+                </div>
+
+                <!-- CARTERA ECONÓMICA -->
+                <div class="p-5 bg-gradient-to-br from-slate-900 to-slate-950 rounded-3xl border border-slate-800/80 shadow-md relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-500/5 rounded-full filter blur-xl"></div>
+                    <p class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Your Economic Asset</p>
+                    <div class="flex items-baseline space-x-2 mt-2">
+                        <span class="text-4xl font-extrabold text-emerald-400 tracking-tight" id="eco-balance">1,500</span>
+                        <span class="text-sm font-bold text-slate-300">ECO</span>
+                    </div>
+                    <div class="h-[1px] bg-slate-800 my-4"></div>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">
+                        Minted via verifiable positive ecological externalities. Redeemable at local commercial entities.
+                    </p>
+                </div>
+
+                <!-- MÉTRICAS DE IMPACTO AMBIENTAL -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-4 bg-slate-900 rounded-2xl border border-slate-800/60 text-center">
+                        <p class="text-[10px] text-slate-400 font-medium">Your Recycled Waste</p>
+                        <p class="text-xl font-bold mt-1 text-slate-100" id="user-recycled">150 Kg</p>
+                        <span class="text-[9px] text-slate-500 block mt-0.5">Individual Impact</span>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-2xl border border-slate-800/60 text-center">
+                        <p class="text-[10px] text-slate-400 font-medium">LNet Global Recycled</p>
+                        <p class="text-xl font-bold mt-1 text-emerald-400" id="global-recycled">3,450 Kg</p>
+                        <span class="text-[9px] text-slate-500 block mt-0.5">Community Target</span>
+                    </div>
+                </div>
+
+                <!-- SIMULADOR INTERACTIVO DE ENTRADA (MOCK OPERATOR ACTION) -->
+                <div class="p-4 bg-emerald-950/20 rounded-2xl border border-emerald-500/20 space-y-3">
+                    <div class="flex items-center space-x-2 text-xs font-semibold text-emerald-400">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span>Register New Recycling Activity (Mock)</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400">
+                        Simulate a municipal operator scanning a citizen's barcode and registering verified kilograms.
+                    </p>
+                    <div class="flex space-x-2">
+                        <input type="number" id="recycle-input" placeholder="Kilograms" class="flex-1 px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-100 focus:outline-none focus:border-emerald-500">
+                        <button onclick="simulateRecycling()" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
+                            Submit on LNet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- REGISTRO AUDITABLE (TRANSPARENT LEDGER FEED) -->
+                <div class="space-y-2 flex-1">
+                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Auditable Ledger Activity</h3>
+                    <div class="space-y-2 h-44 overflow-y-auto no-scrollbar pr-1" id="ledger-feed">
+                        <!-- Fila 1 -->
+                        <div class="p-2.5 bg-slate-900/60 rounded-xl border border-slate-900 flex justify-between items-center text-xs">
+                            <div class="flex items-center space-x-2">
+                                <span class="p-1.5 bg-emerald-500/10 text-emerald-400 rounded-lg">
+                                    <i class="fa-solid fa-plus text-[10px]"></i>
+                                </span>
+                                <div>
+                                    <p class="font-medium">Recycling Action Verified</p>
+                                    <p class="text-[9px] text-slate-500">Municipality of Lima · Tx: 0x4a...2b</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-emerald-400">+200 ECO</span>
+                        </div>
+                        <!-- Fila 2 -->
+                        <div class="p-2.5 bg-slate-900/60 rounded-xl border border-slate-900 flex justify-between items-center text-xs">
+                            <div class="flex items-center space-x-2">
+                                <span class="p-1.5 bg-emerald-500/10 text-emerald-400 rounded-lg">
+                                    <i class="fa-solid fa-plus text-[10px]"></i>
+                                </span>
+                                <div>
+                                    <p class="font-medium">Recycling Action Verified</p>
+                                    <p class="text-[9px] text-slate-500">Municipality of Lima · Tx: 0x9e...1a</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-emerald-400">+500 ECO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTTOM NAV -->
+                <div class="pt-2 flex justify-around border-t border-slate-900 text-slate-400 text-xs">
+                    <button class="flex flex-col items-center space-y-1 text-emerald-400">
+                        <i class="fa-solid fa-chart-pie text-lg"></i>
+                        <span class="text-[9px]">Dashboard</span>
+                    </button>
+                    <button onclick="goToMarket()" class="flex flex-col items-center space-y-1 hover:text-slate-200">
+                        <i class="fa-solid fa-store text-lg"></i>
+                        <span class="text-[9px]">Marketplace</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ================= PANTALLA 3: MARKETPLACE DE CANJES ================= -->
+            <div id="screen-market" class="hidden flex-1 flex flex-col space-y-4">
+                
+                <!-- HEADER MARKET -->
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <button onclick="goToDashboard()" class="p-1.5 bg-slate-950 text-slate-400 hover:text-slate-100 rounded-lg">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h2 class="text-lg font-bold">EcoMarketplace</h2>
+                    </div>
+                    <span class="px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full text-[11px] font-bold" id="market-balance-badge">
+                        🛒 1,500 ECO
+                    </span>
+                </div>
+
+                <p class="text-[11px] text-slate-400 leading-relaxed">
+                    Redeem your EcoPoints instantly on-chain. Each transaction burns tokens via the `redeemReward` smart contract function.
+                </p>
+
+                <!-- LISTA DE PREMIOS -->
+                <div class="space-y-3 flex-1 overflow-y-auto no-scrollbar h-[440px]">
+                    <!-- Premio 1 -->
+                    <div class="p-4 bg-slate-900 rounded-2xl border border-slate-800/80 flex flex-col justify-between space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div class="space-y-1">
+                                <span class="px-2 py-0.5 bg-green-500/10 text-green-400 text-[9px] font-bold rounded-md uppercase">Supermarkets</span>
+                                <h3 class="text-sm font-semibold text-slate-100">15% Off - Supermercados Verde</h3>
+                                <p class="text-[10px] text-slate-400">Valid for local organic fresh products.</p>
+                            </div>
+                            <i class="fa-solid fa-cart-shopping text-emerald-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-xs font-extrabold text-emerald-400">Price: 500 ECO</span>
+                            <button onclick="redeemReward('Supermercados Verde Discount', 500)" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
+                                Redeem Reward
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Premio 2 -->
+                    <div class="p-4 bg-slate-900 rounded-2xl border border-slate-800/80 flex flex-col justify-between space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div class="space-y-1">
+                                <span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 text-[9px] font-bold rounded-md uppercase">Transport</span>
+                                <h3 class="text-sm font-semibold text-slate-100">Metropolitano Bus Ticket</h3>
+                                <p class="text-[10px] text-slate-400">One full free ride in the Metropolitano system.</p>
+                            </div>
+                            <i class="fa-solid fa-bus text-blue-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-xs font-extrabold text-emerald-400">Price: 200 ECO</span>
+                            <button onclick="redeemReward('Metropolitano Ticket', 200)" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
+                                Redeem Reward
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Premio 3 -->
+                    <div class="p-4 bg-slate-900 rounded-2xl border border-slate-800/80 flex flex-col justify-between space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div class="space-y-1">
+                                <span class="px-2 py-0.5 bg-purple-500/10 text-purple-400 text-[9px] font-bold rounded-md uppercase">Municipal</span>
+                                <h3 class="text-sm font-semibold text-slate-100">10% Off Property Tax (Predial)</h3>
+                                <p class="text-[10px] text-slate-400">Valid for single-family housing properties.</p>
+                            </div>
+                            <i class="fa-solid fa-building text-purple-400 text-lg"></i>
+                        </div>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-xs font-extrabold text-emerald-400">Price: 1,000 ECO</span>
+                            <button onclick="redeemReward('Municipal Tax Discount', 1000)" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
+                                Redeem Reward
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- POPUP COMPRADO CON ÉXITO -->
+        <div id="success-popup" class="hidden absolute inset-x-5 bottom-8 bg-slate-900 border border-emerald-500/40 p-4 rounded-2xl flex flex-col items-center justify-center space-y-2 shadow-2xl shadow-black z-30 transition-all duration-300">
+            <span class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <i class="fa-solid fa-check text-lg"></i>
+            </span>
+            <p class="text-xs font-bold text-center text-slate-100">Transaction Successful</p>
+            <p class="text-[9px] text-center text-slate-400" id="popup-desc">Rewards points burned, event emitted on-chain.</p>
+        </div>
+
+    </div>
+
+    <!-- DOCUMENTACIÓN DE APOYO AL USUARIO -->
+    <div class="mt-4 text-center text-xs text-slate-500 max-w-sm">
+        <p><i class="fa-regular fa-lightbulb mr-1 text-amber-400"></i> <strong>Tip de presentación:</strong> Para el video, inicia conectando la billetera, ingresa "15" en el recuadro de kilos para ver los puntos subir en vivo, y luego ve al Marketplace a canjear.</p>
+    </div>
+
+    <!-- JAVASCRIPT DE SIMULACIÓN INTERACTIVA -->
+    <script>
+        // Estado inicial de la aplicación
+        let balance = 1500;
+        let userRecycled = 150;
+        let globalRecycled = 3450;
+
+        // Cambiar pantallas
+        function connectWallet() {
+            document.getElementById('screen-login').classList.add('hidden');
+            document.getElementById('screen-dashboard').classList.remove('hidden');
+            updateUI();
+        }
+
+        function goToMarket() {
+            document.getElementById('screen-dashboard').classList.add('hidden');
+            document.getElementById('screen-market').classList.remove('hidden');
+            updateUI();
+        }
+
+        function goToDashboard() {
+            document.getElementById('screen-market').classList.add('hidden');
+            document.getElementById('screen-dashboard').classList.remove('hidden');
+            updateUI();
+        }
+
+        // Actualizar variables dinámicas de la UI
+        function updateUI() {
+            document.getElementById('eco-balance').innerText = balance.toLocaleString();
+            document.getElementById('user-recycled').innerText = userRecycled + " Kg";
+            document.getElementById('global-recycled').innerText = globalRecycled.toLocaleString() + " Kg";
+            document.getElementById('market-balance-badge').innerText = `🛒 ${balance.toLocaleString()} ECO`;
+        }
+
+        // Simulación interactiva de la función Solidity: `registerRecycling()`
+        function simulateRecycling() {
+            const inputVal = parseFloat(document.getElementById('recycle-input').value);
+            if (isNaN(inputVal) || inputVal <= 0) {
+                showPopup("Invalid inputs. Please specify positive kilograms.", false);
+                return;
+            }
+
+            const pointsEarned = inputVal * 10;
+            balance += pointsEarned;
+            userRecycled += inputVal;
+            globalRecycled += inputVal;
+
+            // Limpiar input
+            document.getElementById('recycle-input').value = "";
+
+            // Crear una nueva transacción interactiva en el Feed
+            const feed = document.getElementById('ledger-feed');
+            const randomHash = "0x" + Math.random().toString(16).slice(2, 6) + "..." + Math.random().toString(16).slice(2, 4);
+            
+            const newTx = document.createElement('div');
+            newTx.className = "p-2.5 bg-slate-900/60 rounded-xl border border-slate-900 flex justify-between items-center text-xs animate-fade-in";
+            newTx.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="p-1.5 bg-emerald-500/10 text-emerald-400 rounded-lg">
+                        <i class="fa-solid fa-plus text-[10px]"></i>
+                    </span>
+                    <div>
+                        <p class="font-medium">Recycling Action Verified</p>
+                        <p class="text-[9px] text-slate-500">Municipality of Lima · Tx: ${randomHash}</p>
+                    </div>
+                </div>
+                <span class="font-bold text-emerald-400">+${pointsEarned} ECO</span>
+            `;
+            feed.insertBefore(newTx, feed.firstChild);
+
+            updateUI();
+            showPopup(`On-Chain Mint: +${pointsEarned} ECO minted dynamically.`, true);
+        }
+
+        // Simulación interactiva de la función Solidity: `redeemReward()`
+        function redeemReward(rewardName, cost) {
+            if (balance < cost) {
+                showPopup("Insufficient balance. Execute more recycling actions.", false);
+                return;
+            }
+
+            balance -= cost;
+
+            // Registrar quema en el feed
+            const feed = document.getElementById('ledger-feed');
+            const randomHash = "0x" + Math.random().toString(16).slice(2, 6) + "..." + Math.random().toString(16).slice(2, 4);
+            const newTx = document.createElement('div');
+            newTx.className = "p-2.5 bg-slate-900/60 rounded-xl border border-slate-900 flex justify-between items-center text-xs";
+            newTx.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span class="p-1.5 bg-rose-500/10 text-rose-400 rounded-lg">
+                        <i class="fa-solid fa-minus text-[10px]"></i>
+                    </span>
+                    <div>
+                        <p class="font-medium">Redeemed: ${rewardName}</p>
+                        <p class="text-[9px] text-slate-500">EcoMarketplace · Tx: ${randomHash}</p>
+                    </div>
+                </div>
+                <span class="font-bold text-rose-400">-${cost} ECO</span>
+            `;
+            feed.insertBefore(newTx, feed.firstChild);
+
+            updateUI();
+            showPopup(`Successfully burned ${cost} ECO. Reward: "${rewardName}" claimed!`, true);
+        }
+
+        // Control del Popup
+        function showPopup(text, isSuccess) {
+            const popup = document.getElementById('success-popup');
+            const popupDesc = document.getElementById('popup-desc');
+            popupDesc.innerText = text;
+
+            if (isSuccess) {
+                popup.classList.remove('border-rose-500/40');
+                popup.classList.add('border-emerald-500/40');
+                popup.querySelector('span').className = "w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center";
+                popup.querySelector('span').innerHTML = '<i class="fa-solid fa-check text-lg"></i>';
+                popup.querySelectorAll('p')[0].innerText = "Transaction Successful";
+            } else {
+                popup.classList.remove('border-emerald-500/40');
+                popup.classList.add('border-rose-500/40');
+                popup.querySelector('span').className = "w-10 h-10 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center";
+                popup.querySelector('span').innerHTML = '<i class="fa-solid fa-xmark text-lg"></i>';
+                popup.querySelectorAll('p')[0].innerText = "Transaction Rejected";
+            }
+
+            popup.classList.remove('hidden');
+            setTimeout(() => {
+                popup.classList.add('hidden');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
