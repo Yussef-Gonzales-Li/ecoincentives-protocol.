@@ -55,7 +55,7 @@ The technology stack was selected to minimize both fixed development costs and l
 
 ### 7. Project Links 
 
-**Pitch Deck Link:** [Insert Presentation URL Here] 
+**Pitch Deck Link:** [https://github.com/Yussef-Gonzales-Li/ecoincentives-protocol./blob/main/Presentation/EcoIncentives_PitchDeck_EN%20GITHUB.pdf] 
 
 **GitHub Repository Link:** [https://github.com/Yussef-Gonzales-Li/ecoincentives-protocol.] 
 
